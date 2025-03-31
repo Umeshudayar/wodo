@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WODO - Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('/back.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  
+  <!-- Navbar -->
+  <nav class="bg-blue-500 p-4 shadow-md w-full">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="text-white text-2xl font-bold">WODO</div>
+      <div class="flex space-x-8">
+        <a href="/index.html" class="text-white hover:text-gray-300">Home</a>
+        <a href="/booking.html" class="text-white hover:text-gray-300">Book Now</a>
+        <a href="/track-delivery.html" class="text-white hover:text-gray-300">Track</a>
+        <a href="/profile.html" class="text-white hover:text-gray-300">Profile</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Section -->
+  <div class="max-w-4xl mx-auto mt-10 p-6 bg-white bg-opacity-90 shadow-lg rounded-lg text-center">
+    <img id="profile-pic" src="https://via.placeholder.com/100" alt="Profile Picture" class="mx-auto w-24 h-24 rounded-full border-4 border-blue-500 shadow-lg">
+    <h2 class="text-2xl font-semibold mt-4">User Profile</h2>
+    <p>Email: <span id="user-email" class="font-medium">Loading...</span></p>
+    <button id="logout" class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Log Out</button>
+  </div>
+
+  <!-- Approved Bookings Table -->
+  <div class="max-w-4xl mx-auto mt-10 p-6 bg-white bg-opacity-90 shadow-lg rounded-lg">
+    <h2 class="text-2xl font-semibold mb-4">Approved Bookings</h2>
+    <table class="w-full border-collapse border border-gray-300">
+      <thead>
+        <tr class="bg-blue-500 text-white">
+          <th class="p-3 border">Booking ID</th>
+          <th class="p-3 border">Customer Name</th>
+          <th class="p-3 border">Date</th>
+          <th class="p-3 border">Action</th>
+        </tr>
+      </thead>
+      <tbody id="booking-table">
+        <tr class="text-center">
+          <td class="p-3 border">12345</td>
+          <td class="p-3 border">John Doe</td>
+          <td class="p-3 border">2025-03-31</td>
+          <td class="p-3 border">
+            <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">View Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script>
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById("user-email").textContent = user.email;
+        document.getElementById("profile-pic").src = user.photoURL || "https://via.placeholder.com/100";
+      } else {
+        document.getElementById("user-email").textContent = "Not Logged In";
+      }
+    });
+
+    document.getElementById("logout").addEventListener("click", () => {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "/index.html";
+      });
+    });
+  </script>
+</body>
+</html>

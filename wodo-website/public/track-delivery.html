@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WODO - Track Delivery</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">WODO</div>
+      <div class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/booking.html">Book Now</a>
+        <a href="/track-delivery.html">Track</a>
+        <a href="/profile.html">Profile</a>
+      </div>
+    </div>
+  </nav>
+
+  
+  <div class="container">
+    <div class="card">
+      <h2>Track Your Shipment</h2>
+      <div class="form-group">
+        <input type="text" placeholder="Enter Tracking Number">
+      </div>
+      <button class="button">Track</button>
+    </div>
+    <div class="tracking-status">
+      <h3>Shipment Status</h3>
+      <p>Status: In Transit</p>
+      <p>Estimated Delivery: January 1, 2024</p>
+    </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="/js/firebase-config.js"></script>
+  <script src="/js/app/auth.js"></script>
+  
+</body>
+</html>
